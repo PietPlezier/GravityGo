@@ -3,7 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>GravityGo V1</title>
+<title>GravityGo V1.1</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1a1a2e">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="icon-192.png">
 <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -266,7 +271,7 @@ header .tagline { font-size: 0.7rem; color: #999; letter-spacing: 1px; margin-to
   <div class="credits-content">
     <h2>Credits</h2>
     <p>&copy; 2026 Michel Peekel</p>
-    <p>Version 1.0 &mdash; March 14, 2026</p>
+    <p>Version 1.1 &mdash; March 15, 2026</p>
     <p>Game concept developed with ChatGPT</p>
     <p>Built with Claude Code, Opus 4.6 Pro</p>
     <p>Feedback welcome:<br><a href="mailto:michel@mpeekel.nl">michel@mpeekel.nl</a></p>
@@ -1245,6 +1250,11 @@ document.getElementById('btn-manual-close').addEventListener('click',()=>{ docum
 document.getElementById('manual-overlay').addEventListener('click',(e)=>{ if(e.target===e.currentTarget) e.target.classList.remove('show'); });
 
 buildBoard();
+
+// Register PWA Service Worker
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./sw.js').catch(() => {});
+}
 </script>
 </body>
 </html>
